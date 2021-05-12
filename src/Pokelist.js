@@ -29,7 +29,18 @@ function Pokelist() {
     return () => cancel();
   }, [currentPage]);
 
-  if (loading) return 'Loading...';
+  if (loading)
+    return (
+      <div className='container'>
+        <div className='row text-center justify-content-center'>
+          <div className='col-6'>
+            <div class='spinner-border text-warning mt-5' role='status'>
+              <span class='visually-hidden' />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 
   function goToNextPage() {
     setCurrentPage(nextPage);
@@ -40,13 +51,17 @@ function Pokelist() {
   }
 
   return (
-    <>
-      <Pokemon pokemon={pokemon} />
-      <Pagination
-        goToNextPage={nextPage ? goToNextPage : null}
-        goToPrevPage={prevPage ? goToPrevPage : null}
-      />
-    </>
+    <div className='container'>
+      <div className='row text-center justify-content-center'>
+        <div className='col-6'>
+          <Pokemon pokemon={pokemon} />
+          <Pagination
+            goToNextPage={nextPage ? goToNextPage : null}
+            goToPrevPage={prevPage ? goToPrevPage : null}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
