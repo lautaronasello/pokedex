@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import NavBar from './components/nav-bar.js';
 
 function Dashboard() {
   const [pokemon, setPokemon] = useState('pikachu');
@@ -33,7 +32,6 @@ function Dashboard() {
 
   return (
     <>
-      <NavBar />
       <div className='container my-5'>
         <div className='row text-center'>
           <div className='col-md-12 col-sm-12 col-lg-12 mx-auto'>
