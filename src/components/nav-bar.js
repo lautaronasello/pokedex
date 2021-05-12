@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { Nav } from 'react-bootstrap';
 
 export default class NavBar extends Component {
   render() {
     return (
-      <Nav
-        className='justify-content-center mt-3 border border-warning'
-        variant='pills'
-        defaultActiveKey='/home'
-      >
-        <Nav.Item>
-          <Nav.Link href='/dashboard'>Search Pokémon</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href='/pokelist'>Pokémons List</Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <ul className='nav justify-content-center mt-2 border-top border-bottom  border-warning'>
+        <li className='nav-item'>
+          <a className='nav-link' aria-current='page' href='/dashboard'>
+            Search Pokémon
+          </a>
+        </li>
+        <li className='nav-item'>
+          <a className='nav-link' href='/pokelist'>
+            Pokémon List
+          </a>
+        </li>
+      </ul>
     );
   }
 }
