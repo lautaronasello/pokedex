@@ -35,24 +35,29 @@ function Dashboard() {
       <div className='container my-5'>
         <div className='row text-center'>
           <div className='col-md-12 col-sm-12 col-lg-12 mx-auto'>
-            <form onSubmit={handleSubmit}>
-              <div className='input-group mx-auto' style={{ width: '20rem' }}>
-                <input
-                  className='form-control'
-                  id='search-pkm'
-                  type='text'
-                  placeholder='Search Your Pokémon'
-                  onChange={handleChange}
-                  style={{ boxShadow: 'inset 0 1px 2px #eee' }}
-                />
-                <button
-                  className='btn btn-outline-secondary '
-                  type='button'
-                  onClick={handleSubmit}
-                >
-                  Search
-                </button>
-              </div>
+            <form
+              className='input-group mx-auto'
+              style={{ width: '20rem' }}
+              onSubmit={handleSubmit}
+            >
+              <input
+                className='form-control'
+                aria-label='Search Your Pokémon'
+                aria-describedby='button-addon2'
+                id='search-pkm'
+                type='text'
+                placeholder='Search Your Pokémon'
+                onChange={handleChange}
+                style={{ boxShadow: 'inset 0 1px 2px #eee' }}
+              />
+              <button
+                className='btn btn-outline-warning text-nowrap mx-1 rounded-0 '
+                type='button'
+                onClick={handleSubmit}
+                id='button-addon2'
+              >
+                Search
+              </button>
             </form>
           </div>
         </div>
