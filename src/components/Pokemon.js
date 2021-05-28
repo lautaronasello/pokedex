@@ -1,5 +1,5 @@
 import React from 'react';
-export default function Pokemon({ pokemon, pokemonName }) {
+export default function Pokemon({ pokemon }) {
   return (
     <div>
       <ul className=' list-group mt-3'>
