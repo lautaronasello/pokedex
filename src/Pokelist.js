@@ -24,7 +24,6 @@ function Pokelist() {
         setNextPage(res.data.next);
         setPrevPage(res.data.previous);
         setPokemon(res.data.results.map((p) => p.name));
-        console.log(res.data);
       });
 
     return () => cancel();

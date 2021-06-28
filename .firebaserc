@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pokeapp-cba"
+  },
+  "targets": {
+    "pokeapp-cba": {
+      "hosting": {
+        "testpoke": [
+          "pokeapptest"
+        ]
+      }
+    }
   }
 }

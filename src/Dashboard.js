@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Dashboard() {
+function Dashboard({ selectedPokemon }) {
   const [pokemonName, setPokemonName] = useState('pikachu');
   const [pokemonData, setPokemonData] = useState([]);
   const [pokemonType, setPokemonType] = useState('');
@@ -9,6 +9,26 @@ function Dashboard() {
   const handleChange = (e) => {
     setPokemonName(e.target.value.toLowerCase());
   };
+
+  useEffect(() => {
+    // if (selectedPokemon) {
+    //   const getSelectedPokemon = async () => {
+    //     const toArray = [];
+    //     try {
+    //       const url = `https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`;
+    //       const res = await axios.get(url);
+    //       toArray.push(res.data);
+    //       setPokemonType(res.data.types[0].type.name);
+    //       setPokemonData(toArray);
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
+    //   };
+    //   getSelectedPokemon();
+    //   console.log(pokemonType, ' pokedata, ', pokemonData);
+    // }
+    console.log(selectedPokemon);
+  }, [selectedPokemon]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +44,6 @@ function Dashboard() {
       toArray.push(res.data);
       setPokemonType(res.data.types[0].type.name);
       setPokemonData(toArray);
-      console.log(res.data);
     } catch (e) {
       console.log(e);
     }
