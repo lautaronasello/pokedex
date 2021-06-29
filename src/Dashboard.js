@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import Table from './components/Table';
 import axios from 'axios';
+import Pokelist from './Pokelist';
 
 function Dashboard({ selectedPokemon }) {
   const [pokemonName, setPokemonName] = useState('pikachu');
   const [pokemonData, setPokemonData] = useState([]);
   const [pokemonType, setPokemonType] = useState('');
-
+  const [loading, setLoading] = useState(true);
   const handleChange = (e) => {
     setPokemonName(e.target.value.toLowerCase());
   };
-
-  useEffect(() => {
-    // if (selectedPokemon) {
-    //   const getSelectedPokemon = async () => {
-    //     const toArray = [];
-    //     try {
-    //       const url = `https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`;
-    //       const res = await axios.get(url);
-    //       toArray.push(res.data);
-    //       setPokemonType(res.data.types[0].type.name);
-    //       setPokemonData(toArray);
-    //     } catch (e) {
-    //       console.log(e);
-    //     }
-    //   };
-    //   getSelectedPokemon();
-    //   console.log(pokemonType, ' pokedata, ', pokemonData);
-    // }
-    console.log(selectedPokemon);
-  }, [selectedPokemon]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,10 +26,22 @@ function Dashboard({ selectedPokemon }) {
       toArray.push(res.data);
       setPokemonType(res.data.types[0].type.name);
       setPokemonData(toArray);
+      setLoading(false);
     } catch (e) {
       console.log(e);
     }
+    if (pokemonData) {
+      <Pokelist
+        pokemonData={pokemonData}
+        pokemonType={pokemonType}
+        loading={loading}
+      />;
+    }
   };
+
+  useEffect(() => {
+    console.log(selectedPokemon);
+  }, [selectedPokemon]);
 
   return (
     <>
@@ -83,47 +77,16 @@ function Dashboard({ selectedPokemon }) {
       </div>
       {pokemonData.map((data) => {
         return (
-          <div className='container border'>
-            <div className='text-center '>
-              <h1 className='display-3' key={data.name}>
-                {data.name}{' '}
-              </h1>
-              <img
-                src={data.sprites['front_default']}
-                alt={data.name}
-                key={data.id}
-                style={{ height: '12rem' }}
-              />
-            </div>
-            <table className='table table-warning border shadow'>
-              <tbody>
-                <tr>
-                  <th scope='row'>Type</th>
-                  <td key={pokemonType}>{pokemonType} </td>
-                </tr>
-                <tr>
-                  <th scope='row'>Height</th>
-                  <td key={data.height}>
-                    {''}
-                    {Math.round(data.height * 3.9)}"{' '}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope='row'>Weight</th>
-                  <td className='divTableCell' key={data.weight}>
-                    {''}
-                    {Math.round(data.weight / 4.3)}lbs{' '}
-                  </td>
-                </tr>
-                <tr>
-                  <th scope='row'>Number of Battles</th>
-                  <td className='divTableCell' key={data.game_indices.length}>
-                    {data.game_indices.length}{' '}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Table
+            key={data.name}
+            loading={loading}
+            name={data.name}
+            height={data.height}
+            weight={data.weight}
+            sprites={data.sprites}
+            pokemonType={pokemonType}
+            game_indices={data.game_indices}
+          />
         );
       })}
     </>

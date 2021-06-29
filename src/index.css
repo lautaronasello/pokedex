@@ -1,0 +1,7 @@
+.hand:hover {
+  cursor: pointer !important;
+  text-decoration: wavy !important;
+}
+.hand {
+  text-decoration: underline;
+}
